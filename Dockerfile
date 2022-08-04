@@ -16,19 +16,23 @@ FROM debian:bullseye-20220527
 
 # Install required packages.
 RUN apt-get update && apt-get install -y \
-	gcc \
-	git \
-	libtinfo5 \
-	python \
-	python3 \
-	python3-pip \
-	wget
+  gcc \
+  git \
+  libtinfo5 \
+  python \
+  python3 \
+  python3-pip \
+  wget \
+  autoconf \
+  libreadline-dev \
+  bison \
+  flex
 
 # Install bazel
 RUN wget -O bazel "https://github.com/bazelbuild/bazel/releases/download/4.0.0/bazel-4.0.0-linux-x86_64" \
-	&& test "7bee349a626281fc8b8d04a7a0b0358492712377400ab12533aeb39c2eb2b901  bazel" = "$(sha256sum bazel)" \
-	&& chmod +x bazel \
-	&& mv bazel /bin/bazel
+  && test "7bee349a626281fc8b8d04a7a0b0358492712377400ab12533aeb39c2eb2b901  bazel" = "$(sha256sum bazel)" \
+  && chmod +x bazel \
+  && mv bazel /bin/bazel
 
 WORKDIR /usr/src/fhe/
 
